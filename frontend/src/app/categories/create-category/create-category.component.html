@@ -1,0 +1,35 @@
+
+<div class="container">
+    <h3 class="text-center p-5">Create Category</h3>
+    <mat-spinner *ngIf="isLoading"></mat-spinner>
+    <form [formGroup]="form" (submit)="onSaveCategory()" *ngIf="!isLoading">
+        <div class="row">
+            <div class="col-sm-6 p-2">
+                <mat-form-field>
+                <mat-label>Category name</mat-label>
+                <input matInput type="text" formControlName="categoryname" placeholder="Category name">
+                <mat-error *ngIf="form.get('categoryname').invalid">Please enter a category name.</mat-error>
+                </mat-form-field>
+                <mat-form-field >
+                    <mat-label>Category description</mat-label>
+                    <input matInput type="text" formControlName="categorydescription" placeholder="Category description">
+                    <mat-error *ngIf="form.get('categorydescription').invalid">Please enter a category description.</mat-error>
+                </mat-form-field> 
+                         
+            </div>
+  
+            <div class="col-sm-3 p-2">
+                <br><br>
+                <div>
+                    <button mat-stroked-button type="button" (click)="filePicker.click()">Pick Image</button>
+                    <input type="file" #filePicker (change)="onImagePicked($event)" >
+                </div>
+                <div class="image-preview" *ngIf="imagePreview !== '' && imagePreview && form.get('image').valid">
+                    <img [src]="imagePreview" [alt]="form.value.categoryname" style="max-height: 400px !important;max-width: 400px;!important;">
+                </div>
+            </div> 
+            </div>
+            <button mat-raised-button type="submit" style="background-color: darkolivegreen;color: white">Save</button>
+        
+    </form>
+</div>

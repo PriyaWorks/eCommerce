@@ -1,0 +1,61 @@
+<div class="container "> 
+    <div class="row">
+        <div class="col-sm-6">
+            <h1 class="mt-5">{{ category }} category products</h1>
+        </div> 
+        <div class="col-sm-6 mt-5">
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <mat-form-field floatLabel="never">
+                <input matInput placeholder="Filter by product name" [(ngModel)]="productname" autocomplete="off"
+                    (click)="onSearch()">
+                <button mat-button matSuffix mat-icon-button aria-label="Clear" *ngIf="productname" >
+                    <mat-icon>close</mat-icon>
+                </button>
+            </mat-form-field>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <mat-form-field floatLabel="never">
+                <mat-label autocomplete="off">Sort by &nbsp;</mat-label>
+                <mat-select [(ngModel)]="sortByParam" >
+                    <mat-option value="productprice">Price</mat-option>
+                    <mat-option value="productsize">Size</mat-option>
+                    <mat-option value="productcolor">Color</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <button  type="button" (click)="onSortDirection()">Sort</button>
+        </div> 
+    </div>
+    <div class="row mt-1 category-custom">
+      <div class="col-sm-4 mb-3" *ngFor="let product of product | paginate: { id:'listing_pagination',
+        itemsPerPage: 6, currentPage: currentPage, totalItems: totalProducts } 
+        | filter: productname:'productname' | sort: [sortByParam, sortDirection]">
+        <mat-card class="category-card" [routerLink]="[ '/category/product/', product._id ]">
+            <mat-card-title>
+                <!-- {{product._id}} -->
+                {{ product.productname }}
+            </mat-card-title>
+            <img mat-card-image src="{{product.productimageurl}}">   
+            <mat-card-content>
+                <h3>{{ product.productsize }}</h3>
+                <h3>{{ product.productcolor }}</h3>
+                <h3>{{ product.productprice }}</h3>
+            </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+    <br><br>
+    <div>
+        <button mat-fab aria-label="Example icon-button with a heart icon" (click)="onCreateProduct();" class="btn-icon mb-5"
+        *ngIf="userIsAuthenticated == 'Admin'">
+            <mat-icon style="color:#ffab40">add</mat-icon>
+        </button>
+    </div>
+    <div class="pagination">
+        <pagination-controls id="listing_pagination" (pageChange)="currentPage = $event"
+        ></pagination-controls>
+        <!-- <mat-paginator class="mb-5" [length]="totalProducts" [pageSize]="productsPerPage"
+            [pageSizeOptions]="pageSizeOptions" (page)="onChangedPage($event)">
+        </mat-paginator> -->
+    </div>
+</div>
+
+

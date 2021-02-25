@@ -1,0 +1,27 @@
+<div class="container mb-5">
+    <h1 class="m-5">Categories</h1>
+    <div class="row mb-5  category-custom">
+      <div class="col-sm-4 mb-3" *ngFor="let category of categories">
+        <mat-card class="category-card" [routerLink]="[ '/category/', category.categoryname, 'products' ]">
+            <mat-card-title>
+                {{ category.categoryname }}
+            </mat-card-title>
+            <img mat-card-image src="{{category.categoryimageurl}}">   
+        </mat-card>
+      </div>
+    </div>
+    <br><br>
+    <div>
+        <button mat-fab aria-label="Example icon-button with a heart icon" (click)="onCreateCatergory();" class="btn-icon mb-5"
+        *ngIf="userIsAuthenticated == 'Admin'">
+            <mat-icon style="color:#ffab40">add</mat-icon>
+        </button>
+    </div>
+<div class="pagination">          
+    <mat-paginator class="mb-5" [length]="totalCategories" [pageSize]="categoriesPerPage"
+        [pageSizeOptions]="pageSizeOptions" (page)="onChangedPage($event)">
+    </mat-paginator>
+</div> 
+</div>
+
+

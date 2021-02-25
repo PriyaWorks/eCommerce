@@ -1,0 +1,64 @@
+<mat-toolbar style="background: white">
+    <span class="fill-remaining-space">S I G N U P</span>
+    <button class="btn-dialog-close" mat-stroked-button (click)="onClose()" tabindex="-1"><mat-icon>clear</mat-icon></button>
+  </mat-toolbar>    
+  <!-- <mat-spinner *ngIf="isLoading"></mat-spinner> -->
+       <br><br>
+       <form #userForm="ngForm"  (submit)="onRegister(userForm)" style="margin-left: 10%;">
+        <div class="form-group">
+          <input type="text" #name="ngModel" [class.is-invalid]="name.invalid && name.touched"
+            class="form-control" name="name" placeholder="Enter name"
+            [(ngModel)]="userModel.name" required>
+            <span class="text-danger" *ngIf="name.errors?.required && name.touched">Name is required</span>     
+        </div>
+  
+        <div class="form-group">
+          <select (blur)="validateUserType(type.value)" (change)="validateUserType(type.value)"
+              name="type" class="custom-select" [(ngModel)]="userModel.type"
+              #type="ngModel" [class.is-invalid]="userTypeHasError && type.touched" required>
+              <option value="select">Select user type</option>
+              <option *ngFor="let userType of userTypes">{{ userType }}</option>
+          </select>
+          <span class="text-danger" [class.d-none]="!userTypeHasError || type.untouched">Please choose user type</span>
+        </div>
+      
+        <div class="from-group ">
+          <input type="email" class="form-control" name="email" id="email" placeholder="Enter Email"
+              [class.is-invalid]="email.invalid && email.touched" #email="ngModel" 
+              [(ngModel)]="userModel.email" required
+              pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$">
+          <span class="text-danger" *ngIf="email.errors?.required && email.touched">Email is required</span>
+          <span class="text-danger" *ngIf="email.errors?.pattern && email.touched">Email is invalid</span> 
+        </div>
+  
+        <div class="form-group ">
+          <input type="password" #password="ngModel" [class.is-invalid]="password.invalid && password.touched"
+              class="form-control" name="password" placeholder="Enter password"
+              [(ngModel)]="userModel.password" required>
+          <span class="text-danger" [class.d-none]="password.valid || password.untouched">password is required</span>
+        </div>
+  
+        <div class="form-group ">
+            <input type="password" #confirmPassword="ngModel" [class.is-invalid]="confirmPassword.invalid && confirmPassword.touched"
+                class="form-control" name="confirmPassword" placeholder="Enter confirm password"
+                [(ngModel)]="userModel.confirmPassword" required>
+            <span class="text-danger" [class.d-none]="confirmPassword.valid || confirmPassword.untouched">Confirm Password is required</span>
+        </div>
+  
+        <div class="form-group" style="">
+            <div>
+          <button type="submit" mat-raised-button color="primary" style="background-color: darkolivegreen;color: white;">
+              Sign Up
+          </button>
+            </div>
+          <div class="col-sm-6 col-md-4" style="text-align:center;">
+              <p class="mt-3 " style="width: max-content;">Already registered user <a routerLink="/login"><u> Login here</u></a></p>
+          </div>
+      </div>
+      </form>
+  
+  
+  
+       
+        
+  

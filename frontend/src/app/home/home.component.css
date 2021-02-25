@@ -1,0 +1,83 @@
+h1.m-5 {
+    text-align: center;
+    font-weight: 500;
+}
+mat-card-title{
+    text-align: center;
+}
+mat-card.category-card {
+    cursor: pointer;
+}
+img.category {
+    height: 500px;
+    background: black;
+    opacity: .8;
+}
+
+
+.carousel slide{
+    position: relative;
+}
+.banner-text-container {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    padding: 8px 18px;
+    border: 1px solid #fff;
+    outline: 3px solid #fff;
+    outline-offset: 5px;
+    transform: translate(-50%,-50%);
+    text-align: center;
+    width: 230px;
+    height: 50%;
+}
+
+.banner-text-container p:nth-child(1) {
+    text-transform: uppercase;
+    color: #fff;
+    font-weight: 600;
+    font-size: 18px;
+    letter-spacing: 1px;
+    padding: 10px;
+}
+.banner-text-container p:nth-child(2){
+	font-size: 54px;
+    font-weight: bold;
+    text-transform: uppercase;
+    padding: 10px;
+}
+.banner-text-container p:nth-child(3){
+	color: #fff;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 24px;
+    padding: 10px;
+}
+.banner-text-container p:nth-child(4){
+	font-size: 24px;
+    font-weight: bold;
+    text-transform: uppercase;
+    padding: 10px;
+}
+.banner-text-container p.upto {
+	position: relative;
+}
+.banner-text-container button{
+    background-color: #e3bb7c;
+    border: none;
+    padding: 8px;
+    font-size: 18px;
+}
+
+
+.footer-main{
+    background-color:#343a40;
+    height: 3rem;
+    font-size: 15px;
+    text-align: center;
+    padding: 10px;
+    color: white;
+    width: 100%;
+    
+}
+

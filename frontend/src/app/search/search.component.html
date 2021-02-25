@@ -1,0 +1,25 @@
+ <!-- filter the product start -->
+ <form novalidate [formGroup]="form">
+    <h3> Filter By Size, color and Price</h3>
+    <div class="row">
+        <div class="col-sm-6">
+            <input type="text" formControlName="productcolor" class="form-control" placeholder="Product color" />
+        </div>
+        <div class="col-sm-6 col-sm-6">
+            <select ngDefaultControl class="form-control form-control-lg" formControlName="size">
+                <option value=""> Product size</option>
+                <option [ngValue]="size" *ngFor="let size of sizes">{{size}}</option>
+            </select>
+        </div>
+        <div class="col-sm-6">
+            <input type="text" formControlName="productpricefrom" class="form-control" placeholder="product price from"/>
+        </div>
+        <div class="col-sm-6">
+            <input type="text" formControlName="productpriceto" class="form-control" placeholder="product price to"/>
+        </div>
+        <div class="col-sm-12 col-sm-12">
+            <button class="btn btn-primary float-right" (click)="search(form.value)">Search</button>
+        </div>
+    </div>
+    </form>
+    <!-- end -->

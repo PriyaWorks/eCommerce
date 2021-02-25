@@ -1,0 +1,86 @@
+
+<div class="container">
+    <h1 class="text-center mt-3">Category: {{category}}</h1>
+    <h2 class="text-center mt-3">Create Product</h2>
+    
+    <form [formGroup]="form" (submit)="onSaveProduct()">
+        <div class="row mt-3">
+            <div class="col-sm-6 p-2">
+                <mat-form-field>
+                    <mat-label>Product name</mat-label>
+                    <input matInput type="text" formControlName="productname" placeholder="Product name">
+                    <mat-error *ngIf="form.get('productname').invalid">Please enter a product name.</mat-error>
+                </mat-form-field>
+                <br>
+                <mat-form-field >
+                    <mat-label>Product description</mat-label>
+                    <input matInput type="text" formControlName="productdescription" placeholder="Product description">
+                    <mat-error *ngIf="form.get('productdescription').invalid">Please enter a product description.</mat-error>
+                </mat-form-field> 
+                <br>
+                <mat-form-field>
+                    <mat-label>Product category</mat-label>
+                    <input matInput type="text" formControlName="productcategory" ngModel="{{category}}" readonly>
+                    
+                </mat-form-field>
+                <br>
+                <mat-form-field>
+                    <mat-label>Product collection name</mat-label>
+                    <input matInput type="text" formControlName="productcollectionname" placeholder="Product collection name">
+                    <mat-error *ngIf="form.get('productcollectionname').invalid">Please enter a product collection name.</mat-error>
+                </mat-form-field>
+                <br>
+                <mat-form-field>
+                    <mat-label>Product color</mat-label>
+                    <input matInput type="text" formControlName="productcolor" placeholder="Product color">
+                    <mat-error *ngIf="form.get('productcolor').invalid">Please enter a product color.</mat-error>
+                </mat-form-field>
+                <br>
+                <mat-form-field>
+                    <mat-label>Product material</mat-label>
+                    <input matInput type="text" formControlName="productmaterial" placeholder="Product material">
+                    <mat-error *ngIf="form.get('productmaterial').invalid">Please enter a product material.</mat-error>
+                </mat-form-field>
+                <br>
+                <mat-form-field>
+                    <mat-label>Product price</mat-label>
+                    <input matInput type="number" formControlName="productprice" placeholder="Product price">
+                    <mat-error *ngIf="form.get('productprice').invalid">Please enter a product price.</mat-error>
+                </mat-form-field>
+                <br>
+                <mat-form-field>
+                    <mat-label>Product quantity</mat-label>
+                    <input matInput type="number" formControlName="productquantity" placeholder="Product quantity">
+                    <mat-error *ngIf="form.get('productquantity').invalid">Please enter a product price.</mat-error>
+                </mat-form-field>
+                <br>
+                <mat-form-field>
+                    <mat-label>Product size</mat-label>
+                    <mat-select formControlName="productsize" >
+                        <mat-option *ngFor="let size of sizes;" [value]="size.value">{{size.value}}</mat-option>
+                        
+                    </mat-select>
+                    <mat-error *ngIf="form.get('productsize').invalid">Please enter a product size.</mat-error>
+                </mat-form-field>
+                <br>
+                <mat-form-field>
+                    <mat-label>Product brand name</mat-label>
+                    <input matInput type="text" formControlName="productbrandname" placeholder="Product brand name">
+                    <mat-error *ngIf="form.get('productbrandname').invalid">Please enter a product brand name.</mat-error>
+                </mat-form-field>
+            </div>
+    
+            <div class="col-sm-3 p-2">
+                <br><br>
+                <div>
+                    <button mat-stroked-button type="button" (click)="filePicker.click()">Pick Image</button>
+                    <input type="file" #filePicker (change)="onImagePicked($event)" >
+                </div>
+                <div class="image-preview" *ngIf="imagePreview !== '' && imagePreview && form.get('image').valid">
+                    <img [src]="imagePreview" [alt]="form.value.categoryname" style="max-height: 400px !important;max-width: 400px;!important;">
+                </div>
+            </div> 
+            </div>
+        <button mat-raised-button type="submit" (click)="backWithLocation();" style="background-color: darkolivegreen;color: white">Save</button>
+    </form>
+</div>
